@@ -526,54 +526,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Skills Section */}
-            <section className="group py-32 px-6 border-t border-neutral-800">
-                <div className="max-w-5xl mx-auto">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-sm uppercase tracking-widest text-neutral-500 mb-16 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-700 transition-all duration-300 cursor-default"
-                    >
-                        Skills & Expertise
-                    </motion.h2>
-
-                    <div className="grid md:grid-cols-3 gap-16">
-                        {[
-                            {
-                                title: "Technical",
-                                skills: ['C++', 'Python', 'Git', 'Linux', 'Docker', 'gRPC', 'Kubernetes', 'OpenShift', 'REST APIs', 'Microservices', 'Cloud']
-                            },
-                            {
-                                title: "Soft Skills",
-                                skills: ['Collaborative', 'Team-spirited', 'Creative', 'Detail-oriented', 'Time Management', 'Leadership']
-                            },
-                            {
-                                title: "Interests",
-                                skills: ['Soccer', 'One Piece', 'Gaming', 'Music Production', 'Quantum Computing', 'AGI', 'Lord of the Rings']
-                            }
-                        ].map((category, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.8 }}
-                            >
-                                <h3 className="text-lg font-semibold mb-6">{category.title}</h3>
-                                <div className="space-y-3">
-                                    {category.skills.map((skill, i) => (
-                                        <div key={i} className="text-neutral-400">
-                                            {skill}
-                                        </div>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* Publications Section */}
             <section className="group py-32 px-6 border-t border-neutral-800">
                 <div className="max-w-5xl mx-auto">
@@ -648,6 +600,76 @@ export default function Home() {
                                 </div>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Skills Section */}
+            <section className="group py-32 px-6 border-t border-neutral-800">
+                <div className="max-w-5xl mx-auto">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-sm uppercase tracking-widest text-neutral-500 mb-16 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-700 transition-all duration-300 cursor-default"
+                    >
+                        Skills & Expertise
+                    </motion.h2>
+
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {[
+                            {
+                                title: "Technical",
+                                skills: ['C++', 'Python', 'Git', 'Linux', 'Microservices', 'Docker', 'Kubernetes', 'OpenShift', 'gRPC', 'REST APIs']
+                            },
+                            {
+                                title: "Soft Skills",
+                                skills: ['Creative', 'Collaborative', 'Detail-oriented', 'Leadership', 'Time Management']
+                            },
+                            {
+                                title: "Interests",
+                                skills: ['Quantum Computing', 'Gaming', 'One Piece', 'Soccer', 'AGI', 'Music Production', 'Lord of the Rings']
+                            }
+                        ].map((category, index) => {
+                            return (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.15, duration: 0.8 }}
+                                    className="group/card"
+                                >
+                                    <div className="relative h-full border border-neutral-800 rounded-2xl overflow-hidden bg-neutral-950 hover:border-neutral-700 transition-all duration-500 p-8">
+                                        {/* Subtle background glow */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-700/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+
+                                        <div className="relative z-10">
+                                            <h3 className="text-lg font-semibold mb-6 transition-all duration-300 group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-blue-400 group-hover/card:to-purple-600">
+                                                {category.title}
+                                            </h3>
+                                            <div className="flex flex-wrap gap-2">
+                                                {category.skills.map((skill, i) => (
+                                                    <motion.div
+                                                        key={i}
+                                                        initial={{ opacity: 0, scale: 0.8 }}
+                                                        whileInView={{ opacity: 1, scale: 1 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ delay: index * 0.15 + i * 0.05, duration: 0.4 }}
+                                                        className="px-3 py-1.5 bg-neutral-900/50 border border-neutral-800 rounded-lg text-sm text-neutral-400 hover:text-neutral-300 transition-all duration-300 cursor-default group-hover/card:text-neutral-300 group-hover/card:border-neutral-700"
+                                                    >
+                                                        {skill}
+                                                    </motion.div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Bottom gradient accent */}
+                                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-700 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
