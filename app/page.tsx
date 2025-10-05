@@ -69,7 +69,7 @@ export default function Home() {
                         transition={{ duration: 1 }}
                     >
                         {/* Aligned Letters */}
-                        <div className="flex justify-center gap-2 md:gap-3 lg:gap-4 whitespace-nowrap">
+                        <div className="flex justify-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 whitespace-nowrap px-4 sm:px-6">
                             {firstName.split('').map((letter, i) => {
                                 // Lerp from blue-500 (rgb 59, 130, 246) to violet-700 (rgb 109, 40, 217)
                                 const t = i / 7; // normalize position 0-1
@@ -85,7 +85,7 @@ export default function Home() {
                                             initial={{ opacity: 0, y: -30 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: i * 0.08, duration: 0.5 }}
-                                            className="text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
+                                            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
                                         >
                                             {letter}
                                         </motion.div>
@@ -95,7 +95,7 @@ export default function Home() {
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 0.8 + i * 0.08, duration: 0.5 }}
-                                            className="text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
+                                            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
                                             style={{ color: gradientColor }}
                                         >
                                             {lastName[i]}
@@ -111,36 +111,63 @@ export default function Home() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 2, duration: 0.8 }}
-                        className="text-center space-y-8 max-w-3xl mx-auto"
+                        className="text-center max-w-3xl mx-auto mb-16"
                     >
-                        <p className="text-xl md:text-2xl text-neutral-400 leading-relaxed">
-                            Software Engineer building distributed systems<br />and satellite data infrastructure at Viasat
+                        <p className="text-lg sm:text-xl md:text-2xl text-neutral-400 leading-relaxed px-4">
+                            Software Engineer exploring the intersection of cutting-edge technologies and impactful solutions
                         </p>
+                    </motion.div>
 
-                        {/* Contact Links */}
-                        <div className="flex flex-wrap gap-6 justify-center text-sm md:text-base">
-                            <a
-                                href="mailto:philippe@cutillas.io"
-                                className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group selectable"
-                            >
-                                <Mail className="w-4 h-4" />
-                                <span>philippe@cutillas.io</span>
-                            </a>
+                    {/* Contact Links */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 2.4, duration: 0.8 }}
+                        className="flex flex-wrap gap-6 justify-center text-sm md:text-base"
+                    >
+                        <a
+                            href="mailto:philippe@cutillas.io"
+                            className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group selectable"
+                        >
+                            <Mail className="w-4 h-4" />
+                            <span>philippe@cutillas.io</span>
+                        </a>
 
-                            <a
-                                href="https://github.com/pcutillas"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group"
-                            >
-                                <Github className="w-4 h-4" />
-                                <span>pcutillas</span>
-                            </a>
+                        <a
+                            href="tel:+15203028730"
+                            className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group selectable"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>(520) 302-8730</span>
+                        </a>
 
-                            <div className="flex items-center gap-2 text-neutral-400">
-                                <MapPin className="w-4 h-4" />
-                                <span>Orange County, CA</span>
-                            </div>
+                        <a
+                            href="https://github.com/pcutillas"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group"
+                        >
+                            <Github className="w-4 h-4" />
+                            <span>pcutillas</span>
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/pcutillas/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group"
+                        >
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                            <span>pcutillas</span>
+                        </a>
+
+                        <div className="flex items-center gap-2 text-neutral-400">
+                            <MapPin className="w-4 h-4" />
+                            <span>Tustin, CA</span>
                         </div>
                     </motion.div>
                 </div>
@@ -149,7 +176,7 @@ export default function Home() {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 2.5 }}
+                    transition={{ delay: 2.8 }}
                     className="absolute bottom-12 left-1/2 -translate-x-1/2"
                 >
                     <motion.div
@@ -172,7 +199,7 @@ export default function Home() {
                         Featured Projects
                     </motion.h2>
 
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
                             {
                                 title: "SOCIAL",
@@ -187,6 +214,14 @@ export default function Home() {
                                 description: "Building the future of decentralized healthcare insurance. A transparent, trustless health coverage system powered by smart contracts on Ethereum.",
                                 image: "/va-banner.png",
                                 link: null
+                            },
+                            {
+                                title: "NEW WORLD RESOURCE CODEX",
+                                period: "2025 – Present",
+                                description: "A lightweight web-based tool for mapping resources to town locations in New World: Aeternum. Supports town storage limits, sorting, and custom organization.",
+                                image: "/New_World_Logo.png",
+                                link: "https://nwrc.app",
+                                isNewWorld: true
                             }
                         ].map((project, index) => {
                             const CardContent = (
@@ -194,24 +229,77 @@ export default function Home() {
                                     <div className="relative border border-neutral-800 rounded-2xl overflow-hidden bg-neutral-950 hover:border-neutral-700 transition-all duration-500 h-full flex flex-col">
                                         {/* Image */}
                                         <div className="relative h-64 overflow-hidden bg-neutral-900">
-                                            <Image
-                                                src={project.image}
-                                                alt={project.title}
-                                                fill
-                                                className={`group-hover:scale-110 transition-transform duration-700 ease-out ${project.title === 'VALINOR' ? 'object-contain' : 'object-cover'}`}
-                                                style={project.title === 'SOCIAL' ? { objectPosition: 'center 60%' } : undefined}
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
+                                            {project.title === 'SOCIAL' && (
+                                                <>
+                                                    <div className="absolute inset-0 z-20">
+                                                        <Image
+                                                            src={project.image}
+                                                            alt={project.title}
+                                                            fill
+                                                            className="group-hover:scale-110 transition-transform duration-700 ease-out object-cover"
+                                                            style={{ objectPosition: 'center 60%' }}
+                                                        />
+                                                    </div>
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/40 to-transparent z-20" />
+                                                </>
+                                            )}
+
+                                            {/* Fade gradient for non-banner projects */}
+                                            {(project.title === 'VALINOR' || project.isNewWorld) && (
+                                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-900 to-neutral-800" />
+                                            )}
+
+                                            {/* Project Name/Logo Overlay */}
+                                            <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-30">
+                                                {project.title === 'SOCIAL' && (
+                                                    <div className="relative w-48 h-20 mb-6">
+                                                        <Image
+                                                            src="/social-name.png"
+                                                            alt="SOCIAL"
+                                                            fill
+                                                            className="object-contain object-bottom"
+                                                        />
+                                                    </div>
+                                                )}
+                                                {project.isNewWorld && (
+                                                    <div className="relative w-full h-full flex items-center justify-center">
+                                                        <div className="flex flex-col items-center gap-1 group-hover:scale-110 transition-transform duration-700 ease-out">
+                                                            <div className="relative w-64 h-28">
+                                                                <Image
+                                                                    src="/New_World_Logo.png"
+                                                                    alt="New World"
+                                                                    fill
+                                                                    className="object-contain"
+                                                                />
+                                                            </div>
+                                                            <div className="text-lg font-bold tracking-[0.3em] text-amber-200" style={{ fontFamily: 'serif' }}>
+                                                                RESOURCE CODEX
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                {project.title === 'VALINOR' && (
+                                                    <div className="relative w-full h-full flex items-center justify-center px-4">
+                                                        {/* Glow effect */}
+                                                        <div className="absolute inset-0 flex items-center justify-center">
+                                                            <div className="w-96 h-20 bg-cyan-400/15 blur-3xl rounded-full" />
+                                                        </div>
+                                                        {/* Logo */}
+                                                        <div className="relative w-80 h-40 z-10 group-hover:scale-110 transition-transform duration-700 ease-out">
+                                                            <Image
+                                                                src="/va-banner.png"
+                                                                alt="VALINOR"
+                                                                fill
+                                                                className="object-contain"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
 
                                         {/* Content */}
                                         <div className="p-8 flex-1 flex flex-col">
-                                            <div className="flex items-start justify-between mb-4">
-                                                <h3 className="text-3xl font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-700 transition-all duration-300">
-                                                    {project.title}
-                                                </h3>
-                                            </div>
-
                                             <div className="text-xs uppercase tracking-widest text-neutral-500 mb-4">
                                                 {project.period}
                                             </div>
@@ -292,7 +380,7 @@ export default function Home() {
                                 period: "Aug. 2019 – Aug. 2020",
                                 location: "Tucson, AZ",
                                 description: [
-                                    "Led the design and development of a complex application for desktop automation using Python and Qt.",
+                                    "Led the design and development of a complex application for desktop automation using Python and Qt5.",
                                     "Awarded Best System Software Design by Ball Aerospace and Best Systems Engineering by L3Harris & Thales in a competition among 134 other projects.",
                                 ]
                             },
@@ -471,19 +559,22 @@ export default function Home() {
                                 title: "Realizing acoustic qubit analogues with nonlinearly tunable phi-bits in externally driven coupled acoustic waveguides",
                                 authors: "PA Deymier, K Runge, MA Hasan, TD Lata, JA Levine, P Cutillas",
                                 journal: "Scientific Reports",
-                                year: "2023"
+                                year: "2023",
+                                link: "https://www.nature.com/articles/s41598-023-27427-4"
                             },
                             {
                                 title: "Scalable exponentially complex representations of logical phi-bit states and experimental demonstration of an operable three phi-bit gate using an acoustic metastructure",
                                 authors: "PA Deymier, K Runge, P Cutillas, MA Hasan, TD Lata, JA Levine",
                                 journal: "Applied Physics Letters",
-                                year: "2023"
+                                year: "2023",
+                                link: "https://iopscience.iop.org/article/10.1088/1361-651X/ac991e/ampdf"
                             },
                             {
                                 title: "Setting the stage for materials simulation using acoustic metamaterials digital quantum analogue computing platforms",
                                 authors: "PA Deymier, K Runge, MA Hasan, JA Levine, P Cutillas",
                                 journal: "MSMSE",
-                                year: "2022"
+                                year: "2022",
+                                link: "https://par.nsf.gov/servlets/purl/10439186"
                             }
                         ].map((pub, index) => (
                             <motion.div
@@ -499,8 +590,26 @@ export default function Home() {
                                         <div className="text-sm text-neutral-500">{pub.year}</div>
                                     </div>
                                     <div className="md:col-span-3">
-                                        <h3 className="text-lg leading-relaxed mb-3">{pub.title}</h3>
-                                        <p className="text-sm text-neutral-500 mb-2">{pub.authors}</p>
+                                        <a
+                                            href={pub.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-lg leading-relaxed mb-3 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-700 transition-all duration-300 block"
+                                        >
+                                            {pub.title}
+                                        </a>
+                                        <p className="text-sm text-neutral-500 mb-2">
+                                            {pub.authors.split('P Cutillas').map((part, i, arr) => (
+                                                <React.Fragment key={i}>
+                                                    {part}
+                                                    {i < arr.length - 1 && (
+                                                        <span className="text-blue-500 font-semibold">
+                                                            P Cutillas
+                                                        </span>
+                                                    )}
+                                                </React.Fragment>
+                                            ))}
+                                        </p>
                                         <p className="text-sm text-neutral-400">{pub.journal}</p>
                                     </div>
                                 </div>
@@ -515,7 +624,7 @@ export default function Home() {
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                         <div className="text-sm text-neutral-500">
-                            © 2025 Philippe Cutillas
+                            © {new Date().getFullYear()} Philippe Cutillas
                         </div>
                         <div className="flex gap-6 text-sm">
                             <a href="mailto:philippe@cutillas.io" className="text-neutral-500 hover:text-white transition-colors selectable">
@@ -523,6 +632,12 @@ export default function Home() {
                             </a>
                             <a href="https://github.com/pcutillas" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-white transition-colors">
                                 GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/pcutillas/" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-white transition-colors">
+                                LinkedIn
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=1xzYzVIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-white transition-colors">
+                                Google Scholar
                             </a>
                         </div>
                     </div>
