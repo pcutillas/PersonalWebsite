@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     authors: [{ name: 'Philippe Cutillas' }],
     openGraph: {
         title: 'Philippe Cutillas | Software Engineer',
-        description: 'Building the future with distributed systems and elegant solutions',
+        description: 'Exploring the intersection of cutting-edge technologies and impactful solutions',
         type: 'website',
     },
 }

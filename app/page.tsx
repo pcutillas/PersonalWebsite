@@ -14,6 +14,9 @@ export default function Home() {
     const lastName = "CUTILLAS"
     const [showHeader, setShowHeader] = React.useState(false)
 
+    // Parallax effect for background
+    const backgroundY = useTransform(scrollY, [0, 1000], [0, 300])
+
     React.useEffect(() => {
         const unsubscribe = scrollY.on('change', (latest: number) => {
             setShowHeader(latest > 600)
@@ -62,8 +65,26 @@ export default function Home() {
             </motion.header>
 
             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
-                <div className="max-w-7xl mx-auto w-full">
+            <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+                {/* Background Image with Parallax */}
+                <motion.div
+                    className="absolute inset-0 z-0"
+                    style={{ y: backgroundY }}
+                >
+                    <Image
+                        src="/background.jpg"
+                        alt="Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    {/* Dimming overlay */}
+                    <div className="absolute inset-0 bg-black/60" />
+                    {/* Fade to black at bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-[#0a0a0a]" />
+                </motion.div>
+
+                <div className="max-w-7xl mx-auto w-full relative z-10">
                     {/* Stacked Name Display */}
                     <motion.div
                         className="mb-16"
@@ -121,18 +142,22 @@ export default function Home() {
                         </p>
                     </motion.div>
 
+                </div>
+
+                {/* Contact Links and Scroll Indicator Group */}
+                <div className="absolute bottom-6 left-0 right-0 flex flex-col items-center gap-6 z-20">
                     {/* Contact Links */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 2.4, duration: 0.8 }}
-                        className="flex flex-wrap gap-6 justify-center text-sm md:text-base"
+                        className="flex flex-wrap gap-4 md:gap-6 justify-center text-xs md:text-sm px-4"
                     >
                         <a
                             href="mailto:philippe@cutillas.io"
                             className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group selectable"
                         >
-                            <Mail className="w-4 h-4" />
+                            <Mail className="w-3.5 h-3.5 md:w-4 md:h-4" />
                             <span>philippe@cutillas.io</span>
                         </a>
 
@@ -140,7 +165,7 @@ export default function Home() {
                             href="tel:+15203028730"
                             className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group selectable"
                         >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                             <span>(520) 302-8730</span>
@@ -152,7 +177,7 @@ export default function Home() {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group"
                         >
-                            <Github className="w-4 h-4" />
+                            <Github className="w-3.5 h-3.5 md:w-4 md:h-4" />
                             <span>pcutillas</span>
                         </a>
 
@@ -162,32 +187,31 @@ export default function Home() {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors group"
                         >
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                             </svg>
                             <span>pcutillas</span>
                         </a>
 
                         <div className="flex items-center gap-2 text-neutral-400">
-                            <MapPin className="w-4 h-4" />
+                            <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4" />
                             <span>Tustin, CA</span>
                         </div>
                     </motion.div>
-                </div>
 
-                {/* Scroll indicator */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2.8 }}
-                    className="absolute bottom-12 left-1/2 -translate-x-1/2"
-                >
+                    {/* Scroll indicator */}
                     <motion.div
-                        animate={{ y: [0, 8, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent"
-                    />
-                </motion.div>
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.8 }}
+                    >
+                        <motion.div
+                            animate={{ y: [0, 8, 0] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent"
+                        />
+                    </motion.div>
+                </div>
             </section>
 
             {/* Projects Section */}
