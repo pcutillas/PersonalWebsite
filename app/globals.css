@@ -31,6 +31,14 @@
         -moz-user-select: text;
         -ms-user-select: text;
     }
+
+    /* Fix header position on mobile */
+    .fixed-header {
+        position: fixed;
+        top: env(safe-area-inset-top, 0);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
 }
 
 /* Clean, minimal scrollbar */

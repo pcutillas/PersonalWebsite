@@ -29,7 +29,7 @@ export default function Home() {
         <main className="min-h-screen bg-[#0a0a0a] text-white">
             {/* Fixed header with name */}
             <motion.header
-                className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-sm"
+                className="fixed-header left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-sm"
                 initial={{ y: -100, opacity: 0 }}
                 animate={{
                     y: showHeader ? 0 : -100,
