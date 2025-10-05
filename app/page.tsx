@@ -13,6 +13,7 @@ export default function Home() {
     const firstName = "PHILIPPE"
     const lastName = "CUTILLAS"
     const [showHeader, setShowHeader] = React.useState(false)
+    const [backgroundLoaded, setBackgroundLoaded] = React.useState(false)
 
     // Parallax effect for background
     const backgroundY = useTransform(scrollY, [0, 1000], [0, 300])
@@ -65,7 +66,7 @@ export default function Home() {
             </motion.header>
 
             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+            <section className="relative min-h-[100dvh] flex items-center justify-center px-6 py-20 overflow-hidden">
                 {/* Background Image with Parallax */}
                 <motion.div
                     className="absolute inset-0 z-0"
@@ -77,6 +78,7 @@ export default function Home() {
                         fill
                         className="object-cover"
                         priority
+                        onLoad={() => setBackgroundLoaded(true)}
                     />
                     {/* Dimming overlay */}
                     <div className="absolute inset-0 bg-black/60" />
@@ -89,7 +91,7 @@ export default function Home() {
                     <motion.div
                         className="mb-16"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        animate={{ opacity: backgroundLoaded ? 1 : 0 }}
                         transition={{ duration: 1 }}
                     >
                         {/* Aligned Letters */}
@@ -107,8 +109,8 @@ export default function Home() {
                                         {/* First Name Letter */}
                                         <motion.div
                                             initial={{ opacity: 0, y: -30 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: i * 0.08, duration: 0.5 }}
+                                            animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : -30 }}
+                                            transition={{ delay: backgroundLoaded ? i * 0.08 : 0, duration: 0.5 }}
                                             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
                                         >
                                             {letter}
@@ -117,8 +119,8 @@ export default function Home() {
                                         {/* Last Name Letter with interpolated color */}
                                         <motion.div
                                             initial={{ opacity: 0, y: 30 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.8 + i * 0.08, duration: 0.5 }}
+                                            animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : 30 }}
+                                            transition={{ delay: backgroundLoaded ? 0.8 + i * 0.08 : 0, duration: 0.5 }}
                                             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
                                             style={{ color: gradientColor }}
                                         >
@@ -133,8 +135,8 @@ export default function Home() {
                     {/* Subtitle */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 2, duration: 0.8 }}
+                        animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : 20 }}
+                        transition={{ delay: backgroundLoaded ? 2 : 0, duration: 0.8 }}
                         className="text-center max-w-3xl mx-auto mb-16"
                     >
                         <p className="text-lg sm:text-xl md:text-2xl text-neutral-400 leading-relaxed px-4">
@@ -149,8 +151,8 @@ export default function Home() {
                     {/* Contact Links */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 2.4, duration: 0.8 }}
+                        animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : 20 }}
+                        transition={{ delay: backgroundLoaded ? 2.4 : 0, duration: 0.8 }}
                         className="flex flex-wrap gap-4 md:gap-6 justify-center text-xs md:text-sm px-4"
                     >
                         <a
@@ -202,12 +204,12 @@ export default function Home() {
                     {/* Scroll indicator */}
                     <motion.div
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 2.8 }}
+                        animate={{ opacity: backgroundLoaded ? 1 : 0 }}
+                        transition={{ delay: backgroundLoaded ? 2.8 : 0 }}
                     >
                         <motion.div
-                            animate={{ y: [0, 8, 0] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            animate={{ y: backgroundLoaded ? [0, 8, 0] : 0 }}
+                            transition={{ duration: 2, repeat: backgroundLoaded ? Infinity : 0 }}
                             className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent"
                         />
                     </motion.div>
@@ -253,7 +255,7 @@ export default function Home() {
                         ].map((project, index) => {
                             const CardContent = (
                                 <>
-                                    <div className="relative border border-neutral-800 rounded-2xl overflow-hidden bg-neutral-950 hover:border-neutral-700 transition-all duration-500 h-full flex flex-col">
+                                    <div className="relative border border-neutral-800 rounded-2xl overflow-hidden bg-neutral-950 hover:border-neutral-700 active:border-neutral-700 transition-all duration-500 h-full flex flex-col touch-manipulation">
                                         {/* Image */}
                                         <div className="relative h-64 overflow-hidden bg-neutral-900">
                                             {project.title === 'SOCIAL' && (
@@ -263,7 +265,7 @@ export default function Home() {
                                                             src={project.image}
                                                             alt={project.title}
                                                             fill
-                                                            className="group-hover:scale-110 transition-transform duration-700 ease-out object-cover"
+                                                            className="group-hover:scale-110 group-active:scale-110 transition-transform duration-700 ease-out object-cover"
                                                             style={{ objectPosition: 'center 60%' }}
                                                         />
                                                     </div>
@@ -290,7 +292,7 @@ export default function Home() {
                                                 )}
                                                 {project.isNewWorld && (
                                                     <div className="relative w-full h-full flex items-center justify-center">
-                                                        <div className="flex flex-col items-center gap-0 group-hover:scale-110 transition-transform duration-700 ease-out">
+                                                        <div className="flex flex-col items-center gap-0 group-hover:scale-110 group-active:scale-110 transition-transform duration-700 ease-out">
                                                             <div className="relative w-64 h-28">
                                                                 <Image
                                                                     src="/New_World_Logo.png"
@@ -318,7 +320,7 @@ export default function Home() {
                                                             <div className="w-96 h-20 bg-cyan-400/15 blur-3xl rounded-full" />
                                                         </div>
                                                         {/* Logo */}
-                                                        <div className="relative w-80 h-40 z-10 group-hover:scale-110 transition-transform duration-700 ease-out">
+                                                        <div className="relative w-80 h-40 z-10 group-hover:scale-110 group-active:scale-110 transition-transform duration-700 ease-out">
                                                             <Image
                                                                 src="/va-banner.png"
                                                                 alt="VALINOR"
@@ -343,7 +345,7 @@ export default function Home() {
                                         </div>
 
                                         {/* Gradient accent on hover */}
-                                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-700 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
                                     </div>
                                 </>
                             );
@@ -356,10 +358,11 @@ export default function Home() {
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.2, duration: 0.8 }}
                                     whileHover={{ y: -8 }}
+                                    whileTap={{ y: -8 }}
                                     className="group"
                                 >
                                     {project.link ? (
-                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full touch-manipulation">
                                             {CardContent}
                                         </a>
                                     ) : (
@@ -640,16 +643,16 @@ export default function Home() {
                                     transition={{ delay: index * 0.15, duration: 0.8 }}
                                     className="group/card"
                                 >
-                                    <div className="relative h-full border border-neutral-800 rounded-2xl overflow-hidden bg-neutral-950 hover:border-neutral-700 transition-all duration-500 p-8">
+                                    <div className="relative h-full border border-neutral-800 rounded-2xl overflow-hidden bg-neutral-950 hover:border-neutral-700 active:border-neutral-700 transition-all duration-500 p-8 touch-manipulation">
                                         {/* Subtle background glow */}
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-700/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-700/5 opacity-0 group-hover/card:opacity-100 group-active/card:opacity-100 transition-opacity duration-500" />
 
                                         <div className="relative z-10">
                                             <div className="relative mb-6">
-                                                <h3 className="text-lg font-semibold text-white transition-opacity duration-200 group-hover/card:duration-700 group-hover/card:opacity-0">
+                                                <h3 className="text-lg font-semibold text-white transition-opacity duration-200 group-hover/card:duration-700 group-hover/card:opacity-0 group-active/card:duration-700 group-active/card:opacity-0">
                                                     {category.title}
                                                 </h3>
-                                                <h3 className="absolute inset-0 text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" aria-hidden="true">
+                                                <h3 className="absolute inset-0 text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 opacity-0 group-hover/card:opacity-100 group-active/card:opacity-100 transition-opacity duration-500" aria-hidden="true">
                                                     {category.title}
                                                 </h3>
                                             </div>
@@ -657,7 +660,7 @@ export default function Home() {
                                                 {category.skills.map((skill, i) => (
                                                     <div
                                                         key={i}
-                                                        className="px-3 py-1.5 bg-neutral-900/50 border border-neutral-800 rounded-lg text-sm text-neutral-400 hover:text-neutral-300 transition-all duration-300 cursor-default group-hover/card:text-neutral-300 group-hover/card:border-neutral-700"
+                                                        className="px-3 py-1.5 bg-neutral-900/50 border border-neutral-800 rounded-lg text-sm text-neutral-400 hover:text-neutral-300 transition-all duration-300 cursor-default group-hover/card:text-neutral-300 group-hover/card:border-neutral-700 group-active/card:text-neutral-300 group-active/card:border-neutral-700"
                                                     >
                                                         {skill}
                                                     </div>
@@ -666,7 +669,7 @@ export default function Home() {
                                         </div>
 
                                         {/* Bottom gradient accent */}
-                                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-700 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-700 opacity-0 group-hover/card:opacity-100 group-active/card:opacity-100 transition-opacity duration-300" />
                                     </div>
                                 </motion.div>
                             );
