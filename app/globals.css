@@ -33,11 +33,10 @@
     }
 
     /* Fix header position on mobile */
-    .fixed-header {
-        position: fixed;
-        top: env(safe-area-inset-top, 0);
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
+    @supports (height: 100dvh) {
+        body {
+            min-height: 100dvh;
+        }
     }
 }
 
