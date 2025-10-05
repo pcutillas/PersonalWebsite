@@ -4,6 +4,9 @@ import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Mail, Github, MapPin, ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
+import { Cinzel } from 'next/font/google'
+
+const cinzel = Cinzel({ subsets: ['latin'], weight: ['700'] })
 
 export default function Home() {
     const { scrollYProgress, scrollY } = useScroll()
@@ -263,7 +266,7 @@ export default function Home() {
                                                 )}
                                                 {project.isNewWorld && (
                                                     <div className="relative w-full h-full flex items-center justify-center">
-                                                        <div className="flex flex-col items-center gap-1 group-hover:scale-110 transition-transform duration-700 ease-out">
+                                                        <div className="flex flex-col items-center gap-0 group-hover:scale-110 transition-transform duration-700 ease-out">
                                                             <div className="relative w-64 h-28">
                                                                 <Image
                                                                     src="/New_World_Logo.png"
@@ -272,7 +275,13 @@ export default function Home() {
                                                                     className="object-contain"
                                                                 />
                                                             </div>
-                                                            <div className="text-lg font-bold tracking-[0.3em] text-amber-200" style={{ fontFamily: 'serif' }}>
+                                                            <div
+                                                                className={`${cinzel.className} text-lg tracking-[0.35em] text-amber-200 -mt-1`}
+                                                                style={{
+                                                                    letterSpacing: '0.35em',
+                                                                    textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+                                                                }}
+                                                            >
                                                                 RESOURCE CODEX
                                                             </div>
                                                         </div>
