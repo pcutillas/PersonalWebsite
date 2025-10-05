@@ -645,21 +645,22 @@ export default function Home() {
                                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-700/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
 
                                         <div className="relative z-10">
-                                            <h3 className="text-lg font-semibold mb-6 transition-all duration-300 group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-blue-400 group-hover/card:to-purple-600">
-                                                {category.title}
-                                            </h3>
+                                            <div className="relative mb-6">
+                                                <h3 className="text-lg font-semibold text-white transition-opacity duration-200 group-hover/card:duration-700 group-hover/card:opacity-0">
+                                                    {category.title}
+                                                </h3>
+                                                <h3 className="absolute inset-0 text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" aria-hidden="true">
+                                                    {category.title}
+                                                </h3>
+                                            </div>
                                             <div className="flex flex-wrap gap-2">
                                                 {category.skills.map((skill, i) => (
-                                                    <motion.div
+                                                    <div
                                                         key={i}
-                                                        initial={{ opacity: 0, scale: 0.8 }}
-                                                        whileInView={{ opacity: 1, scale: 1 }}
-                                                        viewport={{ once: true }}
-                                                        transition={{ delay: index * 0.15 + i * 0.05, duration: 0.4 }}
                                                         className="px-3 py-1.5 bg-neutral-900/50 border border-neutral-800 rounded-lg text-sm text-neutral-400 hover:text-neutral-300 transition-all duration-300 cursor-default group-hover/card:text-neutral-300 group-hover/card:border-neutral-700"
                                                     >
                                                         {skill}
-                                                    </motion.div>
+                                                    </div>
                                                 ))}
                                             </div>
                                         </div>
