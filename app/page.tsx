@@ -4,9 +4,6 @@ import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Mail, Github, MapPin, ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
-import { Cinzel } from 'next/font/google'
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['700'] })
 
 export default function Home() {
     const { scrollYProgress, scrollY } = useScroll()
@@ -235,26 +232,26 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
                             {
+                                title: "ARCHEUM",
+                                period: "2025 – Present",
+                                description: "A decentralized cloud focused on speed, personal data ownership, and economic efficiency. Supports realtime systems and end-to-end encryption.",
+                                image: "/archeum-banner.png",
+                                logo: "/archeum-logo.png",
+                                link: "https://github.com/archeum-dev"
+                            },
+                            {
                                 title: "SOCIAL",
                                 period: "2021 – Present",
-                                description: "A decentralized, end-to-end encrypted social platform fixing echo chambers and the mental health epidemic caused by modern social media. Built with Dart, Flutter, and AtPlatform.",
+                                description: "An Archeum-based social platform focused on fixing echo chambers and the mental health epidemic caused by modern social media.",
                                 image: "/social-banner.png",
                                 link: "https://www.patreon.com/cw/socialdev"
                             },
                             {
                                 title: "VALINOR",
                                 period: "2025 – Present",
-                                description: "Building the future of decentralized healthcare insurance. A transparent, trustless health coverage system powered by smart contracts on Ethereum.",
+                                description: "An Archeum and Ethereum-based healthcare mutual aid platform removing the profit motive from healthcare insurance.",
                                 image: "/va-banner.png",
                                 link: null
-                            },
-                            {
-                                title: "NEW WORLD RESOURCE CODEX",
-                                period: "2025 – Present",
-                                description: "A lightweight web-based tool for mapping resources to town locations in New World: Aeternum. Supports town storage limits, sorting, and custom organization.",
-                                image: "/New_World_Logo.png",
-                                link: "https://nwrc.app",
-                                isNewWorld: true
                             }
                         ].map((project, index) => {
                             const CardContent = (
@@ -277,8 +274,23 @@ export default function Home() {
                                                 </>
                                             )}
 
+                                            {project.title === 'ARCHEUM' && (
+                                                <>
+                                                    <div className="absolute inset-0 z-20">
+                                                        <Image
+                                                            src={project.image}
+                                                            alt={project.title}
+                                                            fill
+                                                            className="group-hover:scale-110 group-active:scale-110 transition-transform duration-700 ease-out object-cover"
+                                                            style={{ objectPosition: 'center 60%' }}
+                                                        />
+                                                    </div>
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-neutral-950/20 to-transparent z-20" />
+                                                </>
+                                            )}
+
                                             {/* Fade gradient for non-banner projects */}
-                                            {(project.title === 'VALINOR' || project.isNewWorld) && (
+                                            {project.title === 'VALINOR' && (
                                                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-900 to-neutral-800" />
                                             )}
 
@@ -294,27 +306,14 @@ export default function Home() {
                                                         />
                                                     </div>
                                                 )}
-                                                {project.isNewWorld && (
-                                                    <div className="relative w-full h-full flex items-center justify-center">
-                                                        <div className="flex flex-col items-center gap-0 group-hover:scale-110 group-active:scale-110 transition-transform duration-700 ease-out">
-                                                            <div className="relative w-64 h-28">
-                                                                <Image
-                                                                    src="/New_World_Logo.png"
-                                                                    alt="New World"
-                                                                    fill
-                                                                    className="object-contain"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                className={`${cinzel.className} text-lg tracking-[0.35em] text-amber-200 -mt-1`}
-                                                                style={{
-                                                                    letterSpacing: '0.35em',
-                                                                    textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
-                                                                }}
-                                                            >
-                                                                RESOURCE CODEX
-                                                            </div>
-                                                        </div>
+                                                {project.title === 'ARCHEUM' && (
+                                                    <div className="relative w-64 h-24 mb-2">
+                                                        <Image
+                                                            src="/archeum-logo.png"
+                                                            alt="ARCHEUM"
+                                                            fill
+                                                            className="object-contain object-bottom"
+                                                        />
                                                     </div>
                                                 )}
                                                 {project.title === 'VALINOR' && (
