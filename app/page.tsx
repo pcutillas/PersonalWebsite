@@ -93,7 +93,7 @@ export default function Home() {
                         className="mb-16"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: backgroundLoaded ? 1 : 0 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 0.6 }}
                     >
                         {/* Aligned Letters */}
                         <div className="flex justify-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 whitespace-nowrap px-4 sm:px-6">
@@ -111,7 +111,7 @@ export default function Home() {
                                         <motion.div
                                             initial={{ opacity: 0, y: -30 }}
                                             animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : -30 }}
-                                            transition={{ delay: backgroundLoaded ? i * 0.08 : 0, duration: 0.5 }}
+                                            transition={{ delay: backgroundLoaded ? i * 0.05 : 0, duration: 0.35 }}
                                             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
                                         >
                                             {letter}
@@ -121,7 +121,7 @@ export default function Home() {
                                         <motion.div
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : 30 }}
-                                            transition={{ delay: backgroundLoaded ? 0.8 + i * 0.08 : 0, duration: 0.5 }}
+                                            transition={{ delay: backgroundLoaded ? 0.5 + i * 0.05 : 0, duration: 0.35 }}
                                             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none cursor-default"
                                             style={{ color: gradientColor }}
                                         >
@@ -137,7 +137,7 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : 20 }}
-                        transition={{ delay: backgroundLoaded ? 2 : 0, duration: 0.8 }}
+                        transition={{ delay: backgroundLoaded ? 1.4 : 0, duration: 0.6 }}
                         className="text-center max-w-3xl mx-auto mb-16"
                     >
                         <p className="text-lg sm:text-xl md:text-2xl text-neutral-400 leading-relaxed px-4">
@@ -153,7 +153,7 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: backgroundLoaded ? 1 : 0, y: backgroundLoaded ? 0 : 20 }}
-                        transition={{ delay: backgroundLoaded ? 2.4 : 0, duration: 0.8 }}
+                        transition={{ delay: backgroundLoaded ? 1.7 : 0, duration: 0.6 }}
                         className="flex flex-wrap gap-4 md:gap-6 justify-center text-xs md:text-sm px-4"
                     >
                         <a
@@ -206,7 +206,7 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: backgroundLoaded ? 1 : 0 }}
-                        transition={{ delay: backgroundLoaded ? 2.8 : 0 }}
+                        transition={{ delay: backgroundLoaded ? 1.8 : 0 }}
                     >
                         <motion.div
                             animate={{ y: backgroundLoaded ? [0, 8, 0] : 0 }}
@@ -234,24 +234,24 @@ export default function Home() {
                             {
                                 title: "ARCHEUM",
                                 period: "2025 – Present",
-                                description: "A decentralized cloud focused on speed, personal data ownership, and economic efficiency. Supports realtime systems and end-to-end encryption.",
+                                description: "A decentralized cloud focused on speed, personal data ownership, and economic efficiency.",
                                 image: "/archeum-banner.png",
                                 logo: "/archeum-logo.png",
-                                link: "https://github.com/archeum-dev"
+                                link: "https://archeum.io"
                             },
                             {
                                 title: "SOCIAL",
                                 period: "2021 – Present",
                                 description: "An Archeum-based social platform focused on fixing echo chambers and the mental health epidemic caused by modern social media.",
                                 image: "/social-banner.png",
-                                link: "https://www.patreon.com/cw/socialdev"
+                                link: "https://www.patreon.com/archeum"
                             },
                             {
                                 title: "VALINOR",
                                 period: "2025 – Present",
                                 description: "An Archeum and Ethereum-based healthcare mutual aid platform removing the profit motive from healthcare insurance.",
                                 image: "/va-banner.png",
-                                link: null
+                                link: "https://valinor.us"
                             }
                         ].map((project, index) => {
                             const CardContent = (
