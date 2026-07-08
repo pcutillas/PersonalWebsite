@@ -234,22 +234,22 @@ export default function Home() {
                             {
                                 title: "ARCHEUM",
                                 period: "2025 – Present",
-                                description: "A decentralized cloud focused on speed, personal data ownership, and economic efficiency.",
+                                description: "A free, decentralized, identity-centric backend leveraging phones' idle compute.",
                                 image: "/archeum-banner.png",
-                                logo: "/archeum-logo.png",
+                                logo: "/archeum-text.png",
                                 link: "https://archeum.io"
                             },
                             {
                                 title: "SOCIAL",
                                 period: "2021 – Present",
-                                description: "An Archeum-based social platform focused on fixing echo chambers and the mental health epidemic caused by modern social media.",
+                                description: "Social media without monetization or predatory algorithms. Powered by Archeum.",
                                 image: "/social-banner.png",
                                 link: "https://www.patreon.com/archeum"
                             },
                             {
                                 title: "VALINOR",
                                 period: "2025 – Present",
-                                description: "An Archeum and Ethereum-based healthcare mutual aid platform removing the profit motive from healthcare insurance.",
+                                description: "One place for all your medical and health data. In development. Powered by Archeum.",
                                 image: "/va-banner.png",
                                 link: "https://valinor.us"
                             }
@@ -276,16 +276,16 @@ export default function Home() {
 
                                             {project.title === 'ARCHEUM' && (
                                                 <>
-                                                    <div className="absolute inset-0 z-20">
+                                                    <div className="absolute -inset-x-[10%] inset-y-0 z-20">
                                                         <Image
                                                             src={project.image}
                                                             alt={project.title}
                                                             fill
-                                                            className="group-hover:scale-110 group-active:scale-110 transition-transform duration-700 ease-out object-cover"
-                                                            style={{ objectPosition: 'center 60%' }}
+                                                            className="group-hover:scale-110 group-active:scale-110 transition-transform duration-700 ease-out object-contain"
+                                                            style={{ objectPosition: 'center top' }}
                                                         />
                                                     </div>
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-neutral-950/20 to-transparent z-20" />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/40 to-transparent z-20" />
                                                 </>
                                             )}
 
@@ -297,7 +297,7 @@ export default function Home() {
                                             {/* Project Name/Logo Overlay */}
                                             <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-30">
                                                 {project.title === 'SOCIAL' && (
-                                                    <div className="relative w-48 h-20 mb-6">
+                                                    <div className="relative w-44 h-20 mb-6">
                                                         <Image
                                                             src="/social-name.png"
                                                             alt="SOCIAL"
@@ -307,9 +307,9 @@ export default function Home() {
                                                     </div>
                                                 )}
                                                 {project.title === 'ARCHEUM' && (
-                                                    <div className="relative w-64 h-24 mb-2">
+                                                    <div className="relative w-56 h-20 mb-6">
                                                         <Image
-                                                            src="/archeum-logo.png"
+                                                            src="/archeum-text.png"
                                                             alt="ARCHEUM"
                                                             fill
                                                             className="object-contain object-bottom"
